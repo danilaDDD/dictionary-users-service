@@ -9,6 +9,7 @@ from app.schemas.schemas import Token
 from app.services.base import BaseDBService
 from app.services.jwt_token_service import JWTTokenService, get_jwt_token_service
 from app.services.password_service import get_password_service, PasswordService
+from app.utils.exception import raise_http_exception
 from db.session_manager import SessionManager, get_session_manager
 from settings.settings import Settings, load_settings
 
@@ -42,6 +43,9 @@ class UserRestService(BaseDBService):
 
 
     async def put_user(self, request: PutUserRequest, user_id: int) -> UserResponseEntity:
+        if request.is_empty():
+            raise_http_exception(400, "Empty request body")
+
         async with self.session_manager.start_with_commit() as session_manager:
             source_user = await session_manager.users.find_by_id(user_id)
 
@@ -51,7 +55,7 @@ class UserRestService(BaseDBService):
             request_items = request.model_dump().items()
 
             if len(request_items) == 0:
-                raise HTTPException(status_code=400, detail="empty request body")
+                raise_http_exception(status_code=400, msg="empty request body")
 
             for attr, req_value in request_items:
                 if req_value:
@@ -67,7 +71,7 @@ class UserRestService(BaseDBService):
             user = await session_manager.users.find_by_id(user_id)
 
             if user is None:
-                raise HTTPException(status_code=404, detail="User not found")
+                raise_http_exception(status_code=404, msg="User not found")
 
             return UserResponseEntity.of_user(user)
 
@@ -78,8 +82,7 @@ class UserRestService(BaseDBService):
         )
 
         if user is not None:
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                                detail="User already exists")
+            raise_http_exception(msg="User already exists")
 
 
     def __create_user_obj(self, request, hashed_password):
@@ -93,7 +96,6 @@ class UserRestService(BaseDBService):
         async with self.session_manager.start_without_commit() as session_manager:
             users = await session_manager.users.get_all()
             return [UserResponseEntity.of_user(u) for u in users]
-
 
 
 def get_user_rest_service(
@@ -123,8 +125,8 @@ class TokensRestService(BaseDBService):
             users = [u for u in users if self.password_service.verify(request.password, u.hashed_password)]
 
             if len(users) == 0:
-                raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                                    detail="Invalid login or password")
+                raise_http_exception(status_code=status.HTTP_401_UNAUTHORIZED,
+                                    msg="Invalid login or password")
 
             user = users[0]
             access_token, refresh_token = self.jwt_token_service.generate_tokens(user.id)

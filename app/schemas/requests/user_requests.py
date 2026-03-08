@@ -14,3 +14,6 @@ class PutUserRequest(BaseModel):
     first_name: str = Field(default=None, min_length=3, max_length=50)
     last_name: str = Field(default=None, min_length=3, max_length=50)
     second_name: str = Field(default=None, min_length=3, max_length=50)
+
+    def is_empty(self) -> bool:
+        return not(self.login or self.first_name or self.last_name or self.second_name or self.second_name)

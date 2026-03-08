@@ -83,7 +83,7 @@ class TestPutUserRequest:
         {"second_name": 123},
         {"last_name": 123},
     ])
-    async def test_with_invalid_body_should_return_422_or_400(self, invalid_json: dict):
+    async def test_with_invalid_body_should_return_400(self, invalid_json: dict):
         user_id = await self.save_user()
 
         self.set_url(user_id)
