@@ -1,4 +1,4 @@
-./conf/.env.*
+conf/.*
 .idea
 .vscode/
 .DS_Store
