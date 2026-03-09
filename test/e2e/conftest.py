@@ -10,17 +10,6 @@ from app.services.jwt_token_service import JWTTokenService
 from db.connection import create_session_factory
 from db.session_manager import SessionManager
 
-
-@pytest.fixture(scope="module")
-def session_factory(settings) -> async_sessionmaker[AsyncSession]:
-    return create_session_factory(settings)
-
-
-@pytest_asyncio.fixture(scope="module")
-async def session_manager(session_factory) -> SessionManager:
-    return SessionManager(session_factory)
-
-
 @pytest.fixture(scope="module")
 def client(settings) -> TestClient:
     return TestClient(

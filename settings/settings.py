@@ -35,8 +35,6 @@ class Settings(BaseSettings):
         env_file_encoding = 'utf-8',
     )
 
-
-
 def load_settings() -> Settings:
     env = os.getenv('ENV', 'dev')
     env_path = get_env_file_path(env=env)
