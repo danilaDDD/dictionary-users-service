@@ -5,3 +5,4 @@ conf/.*
 .pytest_cache/
 .coverage
 /logs/*.log
+.*/__pycache__/
