@@ -21,5 +21,5 @@ WORKDIR /app
 COPY . .
 
 EXPOSE 8000
-
-CMD ["sh", "-c", "./sh/run_app.sh"]
+#FIXME сделать переопределение позиционного аргумента первичного токена через .env-файл
+CMD ["sh", "-c", "./sh/run_app.sh 777-777"]

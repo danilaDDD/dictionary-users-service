@@ -1,2 +1,2 @@
-ENV=test ./migrate.sh
+ENV=test ./sh/migrate.sh
 pytest -v

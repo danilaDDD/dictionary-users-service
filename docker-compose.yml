@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/app.Dockerfile
+    container_name: app
+    env_file:
+      - conf/.env.dev
+    ports:
+      - "8002:8000"
+    depends_on:
+      - app_db
+    volumes:
+      - ./logs:/app/logs
+
+  app_db:
+    image: postgres:16-alpine
+    container_name: app_db
+    env_file:
+      - conf/.env.db
+    ports:
+      - "5434:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  test_app:
+    build:
+      context: .
+      dockerfile: docker/test.Dockerfile
+    container_name: test_app
+    env_file:
+      - conf/.env.test
+    environment:
+      - ENV=test
+    depends_on:
+      - test_db
+
+  test_db:
+    image: postgres:16-alpine
+    container_name: test_db
+    env_file:
+      - conf/.env.testdb
+    ports:
+      - "5435:5432"
+    volumes:
+      - test_db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+  test_db_data:
