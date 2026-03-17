@@ -1,4 +1,3 @@
-conf/.*
 .idea
 .vscode/
 .DS_Store
@@ -6,4 +5,4 @@ conf/.*
 .coverage
 /logs/*.log
 .*/__pycache__/
-./reports/
+./env/
