@@ -7,8 +7,7 @@ from starlette.testclient import TestClient
 from app.main import app
 from app.models.models import PrimaryToken
 from app.services.jwt_token_service import JWTTokenService
-from db.connection import create_session_factory
-from db.session_manager import SessionManager
+from app.db.session_manager import SessionManager
 
 @pytest.fixture(scope="module")
 def client(settings) -> TestClient:

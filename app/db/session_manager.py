@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, AsyncSession
 
 from app.repositories.primary_token_repository import PrimaryTokenRepository
 from app.repositories.user_repository import UserRepository
-from db.connection import get_session_factory
+from app.db.connection import get_session_factory
 
 
 class SessionManager:

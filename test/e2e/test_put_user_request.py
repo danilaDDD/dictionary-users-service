@@ -2,9 +2,8 @@ import pytest
 import pytest_asyncio
 from starlette.testclient import TestClient
 
-from app.models.models import User
 from app.testutils.user_utils import UserGenerator
-from db.session_manager import SessionManager
+from app.db.session_manager import SessionManager
 
 
 @pytest.mark.e2e

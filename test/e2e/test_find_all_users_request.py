@@ -2,7 +2,7 @@ import pytest
 from starlette.testclient import TestClient
 
 from app.testutils.user_utils import UserGenerator
-from db.session_manager import SessionManager
+from app.db.session_manager import SessionManager
 
 
 @pytest.mark.e2e

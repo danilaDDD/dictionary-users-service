@@ -1,4 +1,4 @@
-from db.session_manager import SessionManager
+from app.db.session_manager import SessionManager
 
 
 class BaseDBService:

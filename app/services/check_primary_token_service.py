@@ -2,7 +2,7 @@ from fastapi import Depends
 
 from app.models.models import PrimaryToken
 from app.services.base import BaseDBService
-from db.session_manager import SessionManager, get_session_manager
+from app.db.session_manager import SessionManager, get_session_manager
 
 
 class CheckPrimaryTokenService(BaseDBService):

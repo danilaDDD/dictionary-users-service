@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 
-from app.commands.container import DIContainer
 from app.middlewares.error_middleware import ErrorMiddleware
 from app.middlewares.logging_middleware import LoggingMiddleware
 from app.routers.auth_router import auth_router

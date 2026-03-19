@@ -1,7 +1,7 @@
 from app.services.command_service import CommandService
-from db.connection import create_session_factory
-from db.session_manager import SessionManager
-from settings.settings import Settings, load_settings
+from app.db.connection import create_session_factory
+from app.db.session_manager import SessionManager
+from settings.settings import load_settings
 
 
 class DIContainer:

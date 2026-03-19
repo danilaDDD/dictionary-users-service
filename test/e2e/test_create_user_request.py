@@ -2,7 +2,7 @@ import pytest
 from starlette.testclient import TestClient
 
 from app.models.models import User
-from db.session_manager import SessionManager
+from app.db.session_manager import SessionManager
 from settings.settings import Settings
 
 

@@ -2,7 +2,7 @@ import pytest
 import pytest_asyncio
 
 from app.commands.container import DIContainer
-from db.session_manager import SessionManager
+from app.db.session_manager import SessionManager
 
 
 @pytest.fixture(scope='session')

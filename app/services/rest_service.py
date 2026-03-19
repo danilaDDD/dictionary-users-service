@@ -10,7 +10,7 @@ from app.services.base import BaseDBService
 from app.services.jwt_token_service import JWTTokenService, get_jwt_token_service
 from app.services.password_service import get_password_service, PasswordService
 from app.utils.exception import raise_http_exception
-from db.session_manager import SessionManager, get_session_manager
+from app.db.session_manager import SessionManager, get_session_manager
 from settings.settings import Settings, load_settings
 
 

@@ -7,8 +7,8 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, AsyncSession
 from app.testutils.asserts import AssertsToken
 
 from app.testutils.asserts import AssertsResponse
-from db.connection import create_session_factory
-from db.session_manager import SessionManager
+from app.db.connection import create_session_factory
+from app.db.session_manager import SessionManager
 from settings.settings import load_settings, Settings
 
 

@@ -2,7 +2,7 @@ import pytest
 
 from app.commands.container import DIContainer
 from app.models.models import PrimaryToken
-from db.session_manager import SessionManager
+from app.db.session_manager import SessionManager
 
 
 @pytest.mark.asyncio
